@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "philips_led_bulb")(type "KiCad")(uri "/Users/ksisu/dev/hobby/philips_led_bulb/philips_led_bulb.kicad_sym")(options "")(descr ""))
+)

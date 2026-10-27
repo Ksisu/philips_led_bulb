@@ -1445,7 +1445,7 @@
 		)
 		(uuid "ba618342-4d50-4ea0-a6d3-7f9f7363bc0a")
 	)
-	(text "F1 and C1 are off-board (in the E27 base). C1 value not read yet."
+	(text "F1 and C1 are off-board (in the E27 base). C1: Yunxing CD11-H 5.6uF 400V 105C."
 		(exclude_from_sim no)
 		(at 25.4 178.435 0)
 		(effects
@@ -3703,7 +3703,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "Elcap (in base, value ?)"
+		(property "Value" "5.6uF 400V"
 			(at 121.92 87.63 0)
 			(show_name no)
 			(do_not_autoplace no)

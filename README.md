@@ -53,9 +53,9 @@ The bulb uses a **linear constant-current driver**. It has no switching converte
 ### 4. Flicker-free storage capacitor (COUT / RSL)
 A plain linear driver lets the LEDs go dark every time the rectified mains drops below the string voltage, 100 times a second at 50 Hz. That is visible flicker. This chip avoids it with an electrolytic capacitor:
 
-- **C1** (in the base) connects between **HV** (+) and **COUT** (−, pin 6). COUT is a second internal MOSFET to GND.
+- **C1** (5.6 µF / 400 V, Yunxing CD11-H, in the base) connects between **HV** (+) and **COUT** (−, pin 6). COUT is a second internal MOSFET to GND.
 - **Charging:** near the mains peak, the COUT MOSFET lets C1 charge with a *limited* current. The limit is set on **RSL** by R4: **0.6 V / 10 Ω ≈ 60 mA**. Because the charging current is capped instead of drawn in a sharp spike at the peak, the input current waveform is spread out. That is what gives the high power factor (PF > 0.7) and lets the bulb meet IEC 61000-3-2.
-- **Discharging:** when the mains voltage falls, the bridge stops conducting and C1 keeps the HV bus up. Its return current flows back through the COUT MOSFET's body diode. The LED MOSFET still regulates 27 mA, so the light output stays constant: **no flicker**.
+- **Discharging:** when the mains voltage falls, the bridge stops conducting and C1 keeps the HV bus up. Its return current flows back through the COUT MOSFET's body diode. The LED MOSFET still regulates 27 mA, so the light output stays constant: **no flicker**. At 27 mA over a ~10 ms half-cycle, the 5.6 µF capacitor droops by roughly 0.027 × 0.01 / 5.6 µF ≈ 48 V. The LED MOSFET absorbs that as long as the bus stays above the string voltage.
 - **R1** (1.5 MΩ) is a bleeder resistor. It drains C1 after switch-off.
 
 ### 5. Charging-current compensation (VT pin)
@@ -72,7 +72,7 @@ A plain linear driver lets the LEDs go dark every time the rectified mains drops
 |-----|-------|---------|-------|
 | U1 | KP18106WPA | `KP18106WP` | Kiwi Instruments, HSOP-8, LCSC C2692496 |
 | D1–D9 | HV 2835 LED | – | Series string |
-| C1 | Electrolytic, value ? | – | In the base, off-board |
+| C1 | 5.6 µF 400 V, 105 °C | `CD11-H` | Yunxing electrolytic, in the base, off-board |
 | R1 | 1.5 MΩ | `1504` | C1 bleeder |
 | R2 | 5.6 MΩ | `5604` | VT divider (top) |
 | R3 | 11 kΩ | `1102` | VT divider (bottom) |
@@ -93,5 +93,4 @@ U1 has a **crater in the package near pins 6–7** (the COUT/HV side), so it fai
 Check the LEDs and C1 before fitting a new KP18106WPA.
 
 ## Open questions
-- C1 value and voltage rating (not yet read)
 - Confirm by continuity that D9's cathode reaches pin 5 through R7
